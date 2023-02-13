@@ -1,0 +1,20 @@
+extends loginSignUp
+block content
+    if msg 
+        p #{msg}
+    form(action="/checkLogin", class="my-form", method="post")
+        div(class="groupLI")
+            div(class="form-group")
+                div
+                    label(for="usernameinput") Username:
+                input(type="text", name="usernameinput", id="usernameinput", placeholder="Enter your Username", value=user_name || '', required="required")
+                div #{username_err}
+            div(class="form-group")
+                div
+                    label(for="passwordinput") Password:
+                input(type="password", name="passwordinput", id="passwordinput", placeholder="Enter your Password", required="required")
+                div #{pass_err}  
+            div(class="groupLI")      
+                div(class="buttons")
+                    button(type="submit")
+                        img(class="button" src="/images/Extras/connect.png", onmousemove="this.src='/images/Extras/conpres.png'", onmouseleave="this.src='/images/Extras/connect.png'")

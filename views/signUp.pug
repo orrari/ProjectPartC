@@ -1,0 +1,71 @@
+extends loginSignUp
+block content
+    form(action="/checkSignUp", class="my-form", method="post")
+        div(class="group")
+            div(class="form-group")
+                div
+                    label(for="nameinput") Name:
+                if locals.userDetails
+                    input(type="text", name="nameinput", id="nameinput", value=userDetails.name, required="required")
+                else
+                    input(type="text", name="nameinput", id="nameinput", placeholder="Enter your Username", required="required")
+                p #{name_err}
+            div(class="form-group")
+                div
+                    label(for="ageinput") Age:
+                if locals.userDetails
+                    input(type="number", name="ageinput", id="ageinput",min="8" ,max="100" ,value=userDetails.age, required="required")
+                else
+                    input(type="number", name="ageinput", id="ageinput",min="8" ,max="100" ,placeholder="Enter your Age", required="required")
+                p #{age_err}
+            div(class="form-group")
+                div
+                    label(for="mailinput") Email:
+                if locals.userDetails
+                    input(type="email", name="mailinput", id="mailinput", value=userDetails.email, required="required")
+                else
+                    input(type="email", name="mailinput", id="mailinput", placeholder="Enter your Email", required="required")
+                p #{email_err}
+            div(class="form-group")
+                div
+                    label(for="descriptioninput") About Me:
+                if locals.userDetails
+                    textarea(name="descriptioninput", id="descriptioninput") #{userDetails.about_me || ''}
+                else
+                    textarea(name="descriptioninput", id="descriptioninput")
+                p #{description_err}
+
+        div(class="group")
+            div(class="form-group")
+                div
+                    label(for="phoneinput") Phone:
+                if locals.userDetails
+                    input(type="tel", name="phoneinput", id="phoneinput", minlength="10", maxlength="10", value=userDetails.phone_number, required="required")
+                else
+                    input(type="tel", name="phoneinput", id="phoneinput", minlength="10", maxlength="10", placeholder="Enter your Phone", required="required")
+                p #{phone_err}
+            div(class="form-group")
+                div
+                    label(for="usernameinput") UserName:
+                if locals.userDetails
+                    input(type="text", name="usernameinput", id="usernameinput", value=userDetails.user_name, required="required")
+                else
+                    input(type="text", name="usernameinput", id="usernameinput", placeholder="Enter your UserName", required="required")
+                p #{username_err}
+            div(class="form-group")
+                div
+                    label(for="passwordinput") Password:
+                if locals.userDetails
+                    input(type="password", name="passwordinput", id="passwordinput", value=userDetails.password, required="required")
+                else
+                    input(type="password", name="passwordinput", id="passwordinput", placeholder="Enter your Password", required="required")
+                p #{pass_err}
+            div(class="group")
+                div(class="buttons")
+                    button(type="submit")
+                        img(class="button" src="/images/Extras/createaccount.png", onmousemove="this.src='/images/Extras/createpres.png'", onmouseleave="this.src='/images/Extras/createaccount.png'")
+
+
+
+
+

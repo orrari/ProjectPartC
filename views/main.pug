@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/style.css")
+        //- link(rel="icon", href="")
+        script(src="/js/projectJS.js")
+        title Main
+    
+    body
+        div(class="logo")
+            img(src="/images/Extras/logo.png", alt="logo_img")
+        
+        div(class="buttons")
+            a(href="/login")
+                img(class="button" src="/images/Extras/login.png", onmousemove="this.src='/images/Extras/logpres.png'", onmouseleave="this.src='/images/Extras/login.png'")
+            a(href="/signUp")
+                img(class="button" src="/images/Extras/signup.png", onmousemove="this.src='/images/Extras/signpres.png'", onmouseleave="this.src='/images/Extras/signup.png'")

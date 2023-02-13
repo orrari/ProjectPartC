@@ -1,0 +1,5 @@
+﻿trip_id,requested_by,request_status
+3,adi@gmail.com,approved
+3,hila@gmail.com,rejected
+2,shahar@gmail.com,pending
+2,gal@gmail.com,pending

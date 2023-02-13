@@ -1,0 +1,61 @@
+extends pagesLayout
+block content
+    //- if msg 
+    //-     p #{msg}
+    div(class="table-trips")
+        table(cellspacing="20")
+            tr 
+                th(width="150") Filter by: 
+                th(width="200") Date: 
+                    input(type="date", name="dateinput", id="dateinput", onchange="CheckD()")
+                th(width="150") Hour: 
+                   input(type="time", name="beginput", id="beginput")
+        table(cellspacing="20")
+            tr 
+                th(width="150") Dog Details
+                th Trip Details
+                th Owner Details
+                th(width="230") Description
+                th
+                th
+            each t in trips
+                tr 
+                    td
+                        text Name: 
+                        uns #{t.dog_name}
+                        br
+                        if t.img_path != null
+                            img(class="dog2", src="/images/uploads/"+t.img_path)
+                    td 
+                        text Date: 
+                        uns #{t.trip_date}
+                        br
+                        text Hours: 
+                        uns #{t.start_time} - #{t.end_time}
+                        br
+                        text Price: 
+                        uns #{t.price} $
+                    td 
+                        text Name: 
+                        uns #{t.owner_name}
+                        br
+                        text Phone: 
+                        uns #{t.owner_phone}
+                        br
+                        text Address: 
+                        uns #{t.address}
+                    td= t.description
+
+                    td 
+                        if t.is_owner == 1
+                            button(onclick='delete_trip_msg(' + t.trip_id + ')') X
+                        else 
+                            a(href="")
+                                img(class="button" src="/images/Extras/choosetrip.png", onclick="this.src='/images/Extras/pending.png'")
+
+
+   
+                                
+
+
+

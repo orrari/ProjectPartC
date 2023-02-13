@@ -1,0 +1,74 @@
+extends pagesLayout
+block content
+    form(action="/checkNewTrip", class="my-form", method="post", enctype="multipart/form-data")
+        div(class="group")
+            div(class="form-group")
+                div
+                    label(for="dateinput") Date:
+                if locals.tripDetails
+                    input(type="date", name="dateinput", id="dateinput", value=tripDetails.trip_date, onchange="CheckD()", required="required")
+                else
+                    input(type="date", name="dateinput", id="dateinput", onchange="CheckD()", required="required")
+                div #{date_err}
+            div(class="form-group")
+                div
+                    label(for="descriptioninput") Description:
+                if locals.tripDetails
+                    textarea(name="descriptioninput", id="descriptioninput") #{tripDetails.description || ''}
+                else
+                    textarea(name="descriptioninput", id="descriptioninput")
+                div #{description_err}
+            div(class="form-group")
+                div
+                    label(for="dogImg") Add dog image:
+                input(type="file", id="dogImg", name="dogImg", placeholder="Add dog image")
+                div #{img_err}
+
+        div(class="group")
+            div(class="form-group")
+                div
+                    label(for="dogName") Dog Name:
+                if locals.tripDetails
+                    input(type="text", name="dogName", id="dogName", value=tripDetails.dog_name, required="required")
+                else
+                    input(type="text", name="dogName", id="dogName", placeholder="Enter Dog Name", required="required")
+                div #{dogName_err}
+            div(class="form-group")
+                div
+                    label(for="priceinput") Trip Price:
+                if locals.tripDetails
+                    input(type="number", name="priceinput", id="priceinput", min="1", step="1", value=tripDetails.price, required="required")
+                else
+                    input(type="number", name="priceinput", id="priceinput", min="1", step="1", placeholder="Enter Trip Price", required="required")
+                div #{price_err}
+            div(class="form-group")
+                div
+                    label(for="addressinput") Address:
+                if locals.tripDetails
+                    input(type="text", name="addressinput", id="addressinput", value=tripDetails.address, required="required")
+                else
+                    input(type="text", name="addressinput", id="addressinput", placeholder="Enter your Address", required="required")
+            div(class="form-group")
+                div
+                    label(for="beginput") Beginning Time:
+                if locals.tripDetails
+                    input(type="time", name="beginput", id="beginput", value=tripDetails.start_time, onchange="enabledEndTime()", required="required")
+                else
+                    input(type="time", name="beginput", id="beginput", placeholder="Choose Hour", onchange="enabledEndTime()", required="required")
+            div(class="form-group")
+                div
+                    label(for="endinput") End Time:
+                if locals.tripDetails
+                    input(type="time", name="endinput", id="endinput", value=tripDetails.end_time, onchange="CheckEndTime()", disabled="false", required="required")
+                else
+                    input(type="time", name="endinput", id="endinput", placeholder="Choose Hour", disabled="true", onchange="CheckEndTime()", required="required")
+                div(id="end_time_err") 
+            div(class="group")      
+                div(class="buttons")
+                    button(type="submit")
+                        img(class="button" src="/images/Extras/submit.png", onmousemove="this.src='/images/Extras/subpres.png'", onmouseleave="this.src='/images/Extras/submit.png'")
+
+    div(class="dog-container")
+        img(class="dog", src="/images/Extras/inch.png")
+
+

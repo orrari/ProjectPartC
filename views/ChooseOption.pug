@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/style.css")
+        //- link(rel="icon", href="")
+        script(src="/js/projectJS.js")
+        title Choose Option
+
+    body
+        header Welcome! Please choose your wish:
+        if msg 
+            p #{msg}
+        div(class="buttons")
+            a(href="newTrip")
+                img(class="firstbutton" src="/images/Extras/askDog.png", onmousemove="this.src='/images/Extras/trippres.png'", onmouseleave="this.src='/images/Extras/askDog.png'")
+        div(class="buttons")
+            a(href="availableTrips")
+                img(class="button" src="/images/Extras/walkDog.png", onmousemove="this.src='/images/Extras/walkpres.png'", onmouseleave="this.src='/images/Extras/walkDog.png'")
+        div(class="buttons")
+            a(href="myRequests")
+                img(class="button" src="/images/Extras/requests.png", onmousemove="this.src='/images/Extras/reqpres.png'", onmouseleave="this.src='/images/Extras/requests.png'")
+        div(class="buttons")
+            a(href="myTrips")
+                img(class="button" src="/images/Extras/trips.png", onmousemove="this.src='/images/Extras/askpres.png'", onmouseleave="this.src='/images/Extras/trips.png'")
+
+        div(class="dog-container")
+            img(class="dog", src="/images/Extras/inch.png")

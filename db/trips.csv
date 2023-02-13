@@ -1,0 +1,6 @@
+﻿owner_email,trip_date,description,dog_name,price,address,start_time,end_time,img_path,trip_status
+or@gmail.com,2023-10-02,,Toy,50,"calanit 5, beer sheva",07:00,09:00,choop.png,pending
+or@gmail.com,2023-10-14,Lola is a lovely dog! She is 4 years old and she is very friendly,Lola,40,"calanit 5, beer sheva",07:00,08:00,lola.png,pending
+gal@gmail.com,2023-02-15,Rexi is a cute dog and very obedience.,Rexi,35,Shimoni 6 Beer Sheva,14:00,15:30,rexi.png,approved
+gal@gmail.com,2023-02-15,,Shugi,45,Shimoni 6 Beer Sheva,12:00,14:00,,canceled
+shahar@gmail.com,2023-02-15,My Choop is very lazy and tends to sleep a lot.,Choop,50,Ben Yehuda 20 Beer Sheva,20:00,21:00,choop.png,approved
