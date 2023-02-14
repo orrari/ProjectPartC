@@ -148,18 +148,54 @@ const SignUpCheck = (req, res)=>{
         }
 })};
 
+const getMyTrips = (req, res) => {
+    var userEmail = req.cookies.userEmail;
+    var query = "SELECT t.address, t.description, t.dog_name, t.end_time, t.img_path, t.price, t.start_time, t.trip_date, u.name as owner_name, u.phone_number as owner_phone FROM trips t INNER JOIN trips_requests r ON t.trip_id = r.trip_id INNER JOIN users u ON t.owner_email = u.email WHERE r.requested_by like ? AND request_status = 'approved';"
+    sql.query(query, userEmail + "%",  (err, mysqlres) => {
+        
+        // Query error
+        if (err) {
+            console.log("error: ", err);
+            res.status(400).send({message: "error in getting my trips: ", err});
+            return;
+        }
+        
+        if (mysqlres.length != 0) {
+            console.log(mysqlres);
+
+            // No error in query, render template
+            res.render('myTrips', {
+                title: 'My Trips',
+                header_text: 'MY TRIPS',
+                trips: mysqlres
+            });
+        } else {
+            // TODO: add empty content...
+            console.log("no results found");
+        }
+        
+        return;
+    })
+};
+
+
 const getAvailableTrips = (req, res)=>{
     var userEmail = req.cookies.userEmail;
     console.log("user email ", userEmail);
     
-    sql.query("select t.trip_id, t.owner_email, DATE_FORMAT(t.trip_date, '%d/%m/%Y') as trip_date, t.description, t.dog_name, t.price, t.address, t.start_time, t.end_time, t.img_path, t.trip_status, u.name as owner_name, u.phone_number as owner_phone, case when t.owner_email like ? then 1 else 0 end as is_owner from trips t join users u on t.owner_email = u.email where t.trip_date >= CURDATE() and t.trip_status = 'pending'", userEmail + "%", (err, mysqlres) => {
+    var query = "select t.trip_id, t.owner_email, DATE_FORMAT(t.trip_date, '%d/%m/%Y') as trip_date, t.description, t.dog_name, t.price, t.address, t.start_time, t.end_time, t.img_path, t.trip_status, u.name as owner_name, u.phone_number as owner_phone, case when t.owner_email like ? then 1 else 0 end as is_owner from trips t join users u on t.owner_email = u.email where t.trip_date >= CURDATE() and t.trip_status = 'pending'"
 
-    // sql.query("select t.*, u.name as owner_name, u.phone_number as owner_phone, case when t.owner_email like ? then 1 else 0 end as is_owner from trips t join users u on t.owner_email = u.email where t.trip_date >= CURDATE() and t.trip_status = 'pending'", userEmail + "%", (err, mysqlres) => {
+    // Fetch data from database
+    sql.query(query, userEmail + "%", (err, mysqlres) => {
+
+        // Query error
         if (err) {
             console.log("error: ", err);
             res.status(400).send({message: "error in getting trips: " + err});
             return;
         }
+
+        // No error in query, render template
         console.log(mysqlres);
         res.render('availableTrips', {
                 title: "AVAILABLE TRIPS",
@@ -184,4 +220,4 @@ const removeTrip = (req, res) => {
 
 };
 
-module.exports = {checkLoginInputs, SignUpCheck, getAvailableTrips, removeTrip};
+module.exports = {checkLoginInputs, SignUpCheck, getMyTrips, getAvailableTrips, removeTrip};

@@ -1,38 +1,15 @@
 extends pagesLayout
 block content
-//-
-    div(class="flex-child-element1")
-        div(class="choop")
-        if tripDetails.img_path != null
-            img(class="dog2", src="/images/uploads/"+tripDetails.img_path, alt="dog_img")
-    div(class="flex-child-element2")
-        div(class="row1")
-            text Date: 
-            uns #{tripDetails.trip_date}
-            text Hours: 
-            uns #{tripDetails.start_hour} - #{tripDetails.end_hour}
-            text Dog Name: 
-            uns #{tripDetails.dog_name}
-        div(class="rows")
-            text Trip Price: 
-            uns #{tripDetails.price}
-            text Owner Name: 
-            uns #{tripDetails.owner_name}
-            text Phone:  
-            uns #{tripDetails.owner_phone}
-        div(class="rows")
-            text Address: 
-            uns #{tripDetails.address}
-        div(class="rows")
-            text Description: 
-            uns #{tripDetails.description}
-
-        div(class="choose")
-            button(type="button")
-                img(class="button" src="/images/Extras/canceltrip.png", onmousemove="this.src='/images/Extras/cancelpres.png'", onmouseleave="this.src='/images/Extras/canceltrip.png'")
-
--//
-     div(class="table-trips")  
+    //- if msg 
+    //-     p #{msg}
+    div(class="table-trips")
+        table(cellspacing="20")
+            tr 
+                th(width="150") Filter by: 
+                th(width="200") Date: 
+                    input(type="date", name="dateinput", id="dateinput", onchange="CheckD()")
+                th(width="150") Hour: 
+                   input(type="time", name="beginput", id="beginput")
         table(cellspacing="20")
             tr 
                 th(width="150") Dog Details
@@ -70,6 +47,12 @@ block content
                     td= t.description
 
                     td 
-                        a(href="")
-                            img(class="button" src="/images/Extras/canceltrip.png", onmousemove="this.src='/images/Extras/cancelpres.png'", onmouseleave="this.src='/images/Extras/canceltrip.png'")        
+                        if t.is_owner == 1
+                            button(onclick='delete_trip_msg(' + t.trip_id + ')') X
+                        else 
+                            a(href="")
+                                img(class="button" src="/images/Extras/choosetrip.png", onclick="this.src='/images/Extras/pending.png'")   
+                                
+
+
 

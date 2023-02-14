@@ -180,14 +180,10 @@ app.post('/checkNewTrip', (req,res) => {
     }
 });
 
-//לשלוח לפונקציית קראד לשליפה
- app.get('/myTrips',  (req, res) => {
-     res.render('myTrips', {
-         title: 'My Trips',
-         header_text: 'MY TRIPS'
-     });
- });
+// mytrips route
+app.get('/myTrips', CRUD.getMyTrips);
 
+// availableTrips route
 app.get('/availableTrips', CRUD.getAvailableTrips);
 
 app.get('/ChooseOption', (req, res) => {
